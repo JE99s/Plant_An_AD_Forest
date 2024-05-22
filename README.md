@@ -577,7 +577,7 @@ If you're prompted to allow your PC to be discoverable in the network, choose <b
 <br />
 <br />
 <figure>
-  <img src="https://i.imgur.com/9bawckY.png" alt="Advance sys settings" style="width:70%">
+  <img src="https://i.imgur.com/9bawckY.png" alt="Advance sys settings" style="width:40%">
   <figcaption>Go to <b>Advanced system settings</b></figcaption>
 </figure>
 <br />
@@ -619,7 +619,7 @@ If you're prompted to allow your PC to be discoverable in the network, choose <b
 <br/>
 Name your computer whatever you like and Enter your AD local domain
 <br />
-<img src="https://i.imgur.com/fN3lm2L.png" height="75%" width="75%" alt="Win10Ent1 and Domain ad.lab"/>
+<img src="https://i.imgur.com/fN3lm2L.png" height="45%" width="45%" alt="Win10Ent1 and Domain ad.lab"/>
 <br />
 
 
@@ -627,7 +627,7 @@ Name your computer whatever you like and Enter your AD local domain
 <br />
 <br />
 <figure>
-  <img src="https://i.imgur.com/Wnnm30v.png" alt="Enter credentials" style="width:65%">
+  <img src="https://i.imgur.com/Wnnm30v.png" alt="Enter credentials" style="width:45%">
   <figcaption>Enter the domain controller credentials</figcaption>
 </figure>
 <br />
@@ -645,7 +645,7 @@ Name your computer whatever you like and Enter your AD local domain
 <br />
 
 <br />
-<img src="https://i.imgur.com/WZAVK9n.png" height="45%" width="45%" alt="Networks"/>
+<img src="https://i.imgur.com/WZAVK9n.png" height="30%" width="30%" alt="Networks"/>
 <br />
 
 
@@ -661,7 +661,7 @@ Name your computer whatever you like and Enter your AD local domain
 
 
 <br />
-<img src="https://i.imgur.com/escNIPY.png" height="45%" width="45%" alt="Jane Doe logging in"/>
+<img src="https://i.imgur.com/escNIPY.png" height="35%" width="35%" alt="Jane Doe logging in"/>
 <br />
 
 <br />
