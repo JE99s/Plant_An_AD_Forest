@@ -100,42 +100,67 @@ Right-click the adapter and choose <b>Properties</b>
 <br />
 <img src="https://i.imgur.com/JfJF1qu.png" height="60%" width="60%" alt="Properties"/>
 <br />
+Double-click <b>Internet Protocol Version 4 (TCP/IPv4)</b>
+<br />
+<img src="https://i.imgur.com/qhEDaJG.png" height="80%" width="80%" alt="IPv4"/>
+<br />
+We'll configure the adapter as follows:
+<br />
+<img src="https://i.imgur.com/bvM9p9A.png" height="80%" width="80%" alt="Use the following IP address"/>
+<br />
+So, for the DNS Server...two things:
 
-<img src="https://i.imgur.com/kvcqxJU.png" height="80%" width="80%" alt="google website cloned"/>
+- First, check with the DNS server running on the domain controller (we'll install it in a bit)
+- If the DNS server doesn't know the answer, it will forward the DNS query to the default gateway and pfSense will resolve it
+
+
+<h3>Rename the Server</h3>
+Now we'll rename our Windows Server 2019 by clicking the <b>Start Menu</b> and click <b>Settings</b>
 <br />
-<h3>Send Out Da Phishing Campaign</h3>
-<h4>Email Template</h4>
-Now that we have a malicious website. We'll jump back to the Gophish admin dashboard on the Windows 10 VM. On the left-hand sidebar, we'll click the <b>Email Templates</b> tab to create our malicious email. This is a critical part of the phishing campaign. This element has a lot to do with what the victim will see once they receive the phishing email. Let's get started by naming this new email template. Provide an Envelope sender, this can virtually be any email. I made up the email address inside <b>Employee Sender</b> field; just to make it look like it's coming from someone affiliated with Google. Since we are planning to send a malicious Google sign-in URL to the victim. Then, we'll proceed to finish up this email template by providing a subject for the email message and creating the content of the email. Notice that I'm on the HTML sub-tab when working on the contents of the email.
+<img src="https://i.imgur.com/WbiYkia.png" height="40%" width="40%" alt="Settings > System"/>
 <br />
-<img src="https://i.imgur.com/zrJMS29.png" height="80%" width="80%" alt="Email Template"/>
+<img src="https://i.imgur.com/1lwhOUj.png" height="40%" width="40%" alt="About"/>
 <br />
-Within the message, we'll embed the link containing the IP address of the Kali Linux VM, the address to where the captured credentials will be sent to. We want to ensure that the victim will open that malicious URL. The reason we use 'http' instead of 'https' is because the credential harvester (malicious URL) is running on port 80 (refers to HTTP). Once we finish the rest of the email message, click <b>Save Template</b>.
+<img src="https://i.imgur.com/YBoIL9J.png" height="40%" width="40%" alt="Rename this PC"/>
 <br />
-<img src="https://i.imgur.com/QBx7tjO.png" height="80%" width="80%" alt="href...and then save"/>
+Enter DC1 as the name for the domain controller
+<br />
+<img src="https://i.imgur.com/R0jMYtX.png" height="75%" width="75%" alt="Rename to DC1"/>
+<br />
+Choose <b>Restart Now</b>. If a reason is required, choose <b>Other (planned)</b>.
+
+<h3>Take Snapshot of the VM</h3>
+In the VirtualBox VM manager, next to the Windows Server 2019 machine, click the menu icon and choose <b>Snapshots</b>.
+<br />
+<img src="https://i.imgur.com/wkqbEyO.png" height="60%" width="60%" alt="Choose Snapshots"/>
+<br />
+Click the <b>Take</b> button
+<br />
+<img src="https://i.imgur.com/pVTeu44.png" height="25%" width="25%" alt="Take button"/>
+<br />
+We can fill out the Snapshot entry with something like this:
+<br />
+<img src="https://i.imgur.com/8SjDYYN.png" height="45%" width="45%" alt="Description"/>
+<br />
+Click <b>OK</b>. Now, we can restore this snapshot any time if we want to roll back to a pre-domain install.
+
+<h3>Configure Domain Services</h3>
+Now, we'll reboot our DC1 (Windows Server 2019) VM. Once it is on, click <b>Manage</b> > <b>Add Roles and Features</b>
+<br />
+<img src="https://i.imgur.com/VQYqYo1.png" height="55%" width="55%" alt="Manage"/>
+<br />
+Click <b>Next</b> > <b>Next</b> > <b>Next</b> until you reach <b>Server Roles</b>. Check the following boxes:
+
+- <b>Active Directory Domain Services</b>
+- <b>DNS Server</b> (so we can resolve the domain controller by DNS name)
+
+<figure>
+  <img src="https://i.imgur.com/e4TXHcF.png" alt="Click Add Features" style="width:70%">
+  <figcaption>Click Add Features</figcaption>
+</figure>
+
 <br />
 
-<h4>Landing Pages</h4>
-The <b>Landing Pages</b> tab will help the phishing campaign redirect users to another website after they submit their credentials. Landing pages are the actual HTML pages that are returned to the users (victims) when they click the phishing links they receive. Hence, we can import the IP address of our Kali Linux VM to ensure that the victim is redirected to the malicious URL to submit their credentials.
-<br />
-<img src="https://i.imgur.com/1H0gNUO.png" height="75%" width="75%" alt="Landing Page configuration"/>
-<br />
-Next, we'll navigate to the <b>Campaigns</b> tab and click the <b>New Campaign</b> button.
-<br />
-<img src="https://i.imgur.com/XTJ7zAC.png" height="70%" width="70%" alt="New Campaign"/>
-<br />
-We'll provide a name for this campaign. Any name you come up with is fine. Then, we'll select an email template. Here, I will select the one we worked on earlier.
-<br />
-<img src="https://i.imgur.com/qOt7SJr.png" height="45%" width="45%" alt="Select Email Template"/>
-<br />
-Then we'll select the Landing Page we reviewed earlier.
-<br />
-<img src="https://i.imgur.com/NhUr8HW.png" height="45%" width="45%" alt="Select Landing Page"/>
-<br />
-Then the URL...
-<br />
-<img src="https://i.imgur.com/I2dXAVZ.png" height="25%" width="25%" alt="Either IP is fine"/>
-<br />
-Honestly, you can put your Kali's IP address or your local IP address for the URL, the credential harvester should still function the same with either or.
 <br />
 Then, we'll select our Sending Profile. Once all configurations are selected, click <b>Launch Campaign</b> to send it off.
 <br />
