@@ -294,4 +294,108 @@ Once the installation is complete, click on <b>Complete DHCP Configuration</b>
 <br />
 <br />
 
-Go to the
+Go to the <b>Start Menu</b> and search <b>DHCP</b>
+<br />
+<img src="https://i.imgur.com/tjRnMsk.png" height="25%" width="25%" alt="DHCP"/>
+<br />
+Expand the DHCP server tree and right-click <b>IPv4</b> and choose <b>New Scope</b>
+<br />
+<img src="https://i.imgur.com/eJP0AQj.png" height="45%" width="45%" alt="New Scope"/>
+<br />
+Click <b>Next</b> and give your DHCP configuration a name and description. Then, click <b>Next</b>.
+<br />
+<img src="https://i.imgur.com/efbEwHf.png" height="55%" width="55%" alt="Name & Description"/>
+<br />
+Configure the <b>DHCP address space</b> and <b>subnet mask</b>. Then, click <b>Next</b>.
+<br />
+<img src="https://i.imgur.com/oquEzTY.png" height="55%" width="55%" alt="Address space and subnet mask"/>
+<br />
+We're not configuring any DHCP exclusions (reservations), so click <b>Next</b>. We'll make it so clients' leases are good for one year. Click <b>Next</b>.
+<br />
+<img src="https://i.imgur.com/ju3GKVr.png" height="75%" width="75%" alt="Lease Duration"/>
+<br />
+Click <b>Next</b> to configure it now
+<br />
+<img src="https://i.imgur.com/Psgs4Cv.png" height="75%" width="75%" alt="Configure it now"/>
+<br />
+Enter the address of the default gateway and click <b>Add</b>.
+<br />
+<img src="https://i.imgur.com/1iaYiYx.png" height="75%" width="75%" alt="Click Add"/>
+<br />
+The default DNS configuration for DHCP clients is good here. Click <b>Next</b>.
+<br />
+<img src="https://i.imgur.com/bIOpayu.png" height="75%" width="75%" alt="DNS Servers"/>
+<br />
+We don't have a WINS server in our lab environment. Click <b>Next</b>.
+<br />
+<img src="https://i.imgur.com/RjMI06j.png" height="75%" width="75%" alt="No WINS Servers"/>
+<br />
+Click <b>Next</b> to activate the DHCP scope and click <b>Finish</b>.
+<br />
+<img src="https://i.imgur.com/UOg1LBK.png" height="45%" width="45%" alt="Activiate Scope now"/>
+<br />
+
+<h3>Add a Domain Administrator Account</h3>
+Still on our domain controller (DC1), go to the <b>Start Menu</b> and search for <b>Active Directory Users and Computers</b> and open the app.
+<br />
+<img src="https://i.imgur.com/OUEd1t4.png" height="45%" width="45%" alt="Active Directory Users and Computers"/>
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/Kyb5lF6.png" alt="Right click for New User" style="width:50%">
+  <figcaption><b>ad.lab</b> > <b>Right-click Users</b> > <b>New</b> > <b>User</b></figcaption>
+</figure>
+<br />
+<br />
+<br />
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/U36Ap5u.png" alt="New User details" style="width:60%">
+  <figcaption>Fill out the fields with the User details</figcaption>
+</figure>
+<br />
+<br />
+<br />
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/XD01EsV.png" alt="Password options" style="width:60%">
+  <figcaption>Set the password and password options</figcaption>
+</figure>
+<br />
+<br />
+<br />
+We've just created a new user which will be another administrator account for the AD forest. We will now assign him to the 'Domain Admins' group.
+Click <b>Users</b> > <b>Domain Admins</b>
+<br />
+<img src="https://i.imgur.com/2DWI3hO.png" height="25%" width="25%" alt="Domain Admins"/>
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/SzIOYxr.png" alt="Password options" style="width:50%">
+  <figcaption>Enter the domain administrator username and click <b>Check Names</b>. Click <b>OK</b> > <b>OK</b></figcaption>
+</figure>
+<br />
+<br />
+<br />
+<br />
+<img src="https://i.imgur.com/sJKd32q.png" height="65%" width="65%" alt="Domain Admins Properties"/>
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/2mfML45.png" alt="Sign out" style="width:40%">
+  <figcaption>Sign out of the local administrator account</figcaption>
+</figure>
+<br />
+<br />
+<br />
+<br />
+
