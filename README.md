@@ -158,37 +158,58 @@ Click <b>Next</b> > <b>Next</b> > <b>Next</b> until you reach <b>Server Roles</b
   <img src="https://i.imgur.com/e4TXHcF.png" alt="Click Add Features" style="width:70%">
   <figcaption>Click Add Features</figcaption>
 </figure>
+<br />
+<br />
+
+<figure>
+  <img src="https://i.imgur.com/FKwNcLV.png" alt="Click Add Features" style="width:70%">
+  <figcaption>Click Add Features</figcaption>
+</figure>
 
 <br />
 
 <br />
-Then, we'll select our Sending Profile. Once all configurations are selected, click <b>Launch Campaign</b> to send it off.
+Click <b>Next</b> > <b>Install</b>. Wait for the installation to finish and click <b>Close</b>
 <br />
-<img src="https://i.imgur.com/XG6cHhz.png" height="75%" width="75%" alt="Launch campaign"/>
+<img src="https://i.imgur.com/1KiGLj6.png" height="75%" width="75%" alt="Feature Installation"/>
 <br />
-<img src="https://i.imgur.com/JRAgKZ2.png" height="40%" width="40%" alt="Campaign Scheduled!"/>
+<h3>Configure Active Directory Domain Services</h3>
+Log back into the domain controller (if you've taken a break) as the local administrator and wait for the Server Manager app to load. On the top ribbon of the Dashboard, click the flag icon with the alert:
 <br />
-<h3>Harvest Credentials On Attack Machine</h3>
-Now, we'll go check the sample victim emails we launched the campaign toward and it looks like the phishing emails were received!
+<img src="https://i.imgur.com/dPQMT2a.png" height="20%" width="20%" alt="Flag"/>
 <br />
-<img src="https://i.imgur.com/AGCzKU3.png" height="60%" width="60%" alt="email inbox"/>
+<figure>
+  <img src="https://i.imgur.com/ErVyPyZ.png" alt="Click Promote this server to a DC" style="width:50%">
+  <figcaption>Click <b>Promote this server to a domain controller</b></figcaption>
+</figure>
 <br />
-<img src="https://i.imgur.com/d6szVNU.png" height="70%" width="70%" alt="Contents of email"/>
 <br />
-Above, we can see the email template we created earlier with Gophish.
-**A quick note**
-In the real world, it's vital to examine every detail in suspicious emails. Big indicators of phishing emails are the grammatic errors. Despite the shady sense of authority from the message, the misspelling and improper email format is usually a dead giveaway, telling most that this email is a phishing attempt. 
+Choose <b>Add a new forest</b> and specify a <b>root domain name</b>. I chose <b>ad.lab</b> as my domain name, but you can choose any other local TLD (e.g., .com, .org, .net). Also, it is best to avoid using <b>.local</b> because that can interfere with multicast traffic.
 <br />
-<img src="https://i.imgur.com/FJpR1cQ.png" height="75%" width="75%" alt="Phishing indicators"/>
+<img src="https://i.imgur.com/IZ5JcmE.png" height="60%" width="60%" alt="add a new forest"/>
 <br />
-We’ll proceed by clicking the hyperlink in the email message, and we’re immediately redirected to a google page. But the URL looks different. It has the IP address of my Kali Linux VM inside the URL tab, which would not normally look right, but this is a good indication that the victim has been successfully redirected to credential harvester URL. I go back to my Kali Linux VM, and the feed shows the activity of the Windows 10 VM connecting to the malicious URL.
+Click <b>Next</b>. The default options are fine. Specify a <b>restore password</b>. You can use the same password as the local admin or something different. It doesn't matter. Click <b>Next</b>.
+<img src="https://i.imgur.com/21eNC4n.png" height="70%" width="70%" alt="DSRM"/>
 <br />
-<img src="https://i.imgur.com/HtoxulG.png" height="75%" width="75%" alt="Credential Harvester feed"/>
+<figure>
+  <img src="https://i.imgur.com/7h9ourc.png" alt="DNS delegation" style="width:30%">
+  <figcaption>Ignore the message</figcaption>
+</figure>
 <br />
-So, on the Windows 10 VM, let’s try logging in as the victim who fell for the phishing email. To check our Google account, the victim will input some credentials to log in.
 <br />
-<img src="https://i.imgur.com/fUQEbez.png" height="80%" width="80%" alt="Sign in to Google..."/>
+Click <b>Next</b> and continue with the defaults
 <br />
+<img src="https://i.imgur.com/y1EHwNu.png" height="65%" width="65%" alt="Specify the location..."/>
+<br />
+Looks good. Click <b>Install</b> and wait for it to complete.
+<br />
+<img src="https://i.imgur.com/tVxnyei.png" height="75%" width="75%" alt="Install"/>
+<br />
+The server will automatically reboot afterwards. Be patient, it might take a while.
+<br />
+<img src="https://i.imgur.com/iEU6kYR.png" height="60%" width="60%" alt="rebooting"/>
+<br />
+<h3>Configure Active Directory Certificate Services</h3>
 Once we click <b>Sign in</b>, we'll navigate back to our Kali machine, we should see what the SET credential harvester tool has captured in real-time, and it turns out that we have captured something!
 <br />
 <img src="https://i.imgur.com/3K3FwM6.png" height="85%" width="85%" alt="Captured Credentials"/>
