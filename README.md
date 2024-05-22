@@ -36,57 +36,71 @@ Let's first configure our Windows Server 2019 VM as our domain controller. On ou
 <br />
 Click <b>Finish</b>, but don't start the VM yet!
 <br />
-<img src="https://i.imgur.com/hAIh2aX.png" height="80%" width="80%" alt="Virtual Hard disk"/>
+<img src="https://i.imgur.com/3H0FGXs.png" height="50%" width="50%" alt="Network Settings Win Server 2019"/>
 <br />
-<img src="https://i.imgur.com/hAIh2aX.png" height="80%" width="80%" alt="Virtual Hard disk"/>
-<br />
-<br/>
-<img src="https://i.imgur.com/6iAX7e2.png" height="75%" width="75%" alt="Save Changes to Group"/>
+<img src="https://i.imgur.com/xhlKpnr.png" height="80%" width="80%" alt="Win Server 2019  Network Adapters"/>
 <br />
 
-<h3>Sending Profiles</h3>
-To send emails, Gophish requires us to configure some SMTP relay details called "Sending Profiles". On the left-hand sidebar of the dashboard, click <b>Sending Profiles</b>. During this configuration, it's important that the "SMTP From" address is a valid email address. We'll fill in the following fields as such and save our profile.
+<h3>Windows 10 Enterprise Template</h3>
+Now, we'll create a new VM and give it a name such as <b><i>Win10EnterpriseTemplate</i></b>.
 <br/>
-<img src="https://i.imgur.com/zwMyhNU.png" height="45%" width="45%" alt="Sending Profile"/>
+<img src="https://i.imgur.com/5NUCs6B.png" height="80%" width="80%" alt="Create Win10EnterpriseTemplate"/>
 <br />
-Ok, so we now have our Gophish server up and running. We’ve made a group of target recipients and we’ve established a Sending Profile that will launch the phishing campaign. Before we proceed, let’s go to our Kali Linux VM to setup the Credential Harvester tool. 
+<img src="https://i.imgur.com/qcZ29aP.png" height="80%" width="80%" alt="Hardware"/>
+<br />
+<img src="https://i.imgur.com/XLLFNp9.png" height="80%" width="80%" alt="Virtual Hard disk"/>
+<br />
+Again, click <b>Finish</b>, but do not start the VM yet! We'll go to the network settings of the VM.
 <br/>
+<img src="https://i.imgur.com/z236WTf.png" height="60%" width="60%" alt="Win10Enterprise Network Settings"/>
+<br />
+<img src="https://i.imgur.com/4EKyJtJ.png" height="80%" width="80%" alt="Win10EnterpriseTemplate Network Adapter"/>
+<br />
+Make sure to save the settings of the VM and now we'll start the installation of the operating systems.
+<br />
+<h3>Windows Server 2019</h3>
+We'll hover over our newly created Windows Server 2019 VM and double-click to start the VM. Once booting finishes, Choose languge > Click <b>Install Now</b>.
+<img src="https://i.imgur.com/Gnh0EGN.png" height="75%" width="75%" alt="Choose Language"/>
+<br />
+Choose <b>Windows Server 2019 Standard Evaluation (Desktop Experience)</b>
+<img src="https://i.imgur.com/e9H4q1x.png" height="75%" width="75%" alt="Choose Standard Evaluation (desktop experience)"/>
+<br />
+We'll click <b>Next</b> and accept the terms and conditions. Then, we'll choose a <b>Custom</b> installation of Windows.
+<br />
+<img src="https://i.imgur.com/Zgy0KNX.png" height="75%" width="75%" alt="Custom: Install Windows..."/>
+<br />
+Click <b>Next</b> and wait for the installation to finish.
+<br />
+<img src="https://i.imgur.com/iDtp03c.png" height="55%" width="55%" alt="Installing Windows"/>
+<br />
+Enter a local administrator password and keep it in your records.
+<br />
+<img src="https://i.imgur.com/YfhVRHt.png" height="75%" width="75%" alt="Customize Settings"/>
+<br />
+Now, with VirtualBox, we'll click <b>Input</b> > <b>Keyboard</b> > <b>CTRL + ALT + DEL</b> to enter <b>CTRL + ALT + DEL</b> into the VM, and log in with your local Administrator password.
+<br />
+<img src="https://i.imgur.com/8JxQdlk.png" height="75%" width="75%" alt="Administrator Login"/>
+<br />
+Now, we'll configure the Server's Network Interface. In my environment, the pfSense DHCP service has been disabled for the AD (Active Directory) lab LAN, because we want the domain controller to act as the DHCP server for the client Windows computers. Therefore, we'll need to manually configure the domain controller.
 
-<h3>Utilize the SET Toolkit to Create Malicious Link</h3>
-Starting on our Kali Linux VM, let’s ensure connectivity with the Windows 10 VM. 
-<br/>
-<img src="https://i.imgur.com/5tGoJx5.png" height="75%" width="75%" alt="Kali ping to Windows 10"/>
 <br />
-<img src="https://i.imgur.com/Yh8LgQW.png" height="75%" width="75%" alt="Windows 10 ping to Kali"/>
+To get started, on the Windows Server 2019 VM, we'll right-click the network interface icon and choose <b>Open Network & 
+ Internet Settings</b>
+ 
 <br />
-It looks like there is connectivity between the two machines. Now, the credential harvester one of many available tools included in the massive framework called the Social Engineering Toolkit (a.k.a. SET). To start up the SET, we need super user rights to execute its boot command, that is what ‘sudo’ is for. Execute the following command, then press <b>Enter</b>.
+<img src="https://i.imgur.com/2DV62M9.png" height="15%" width="15%" alt="Network Interface Icon"/>
 <br />
-<img src="https://i.imgur.com/0TxS0o3.png" height="75%" width="75%" alt="sudo setoolkit"/>
+<img src="https://i.imgur.com/pT0crPJ.png" height="35%" width="35%" alt="Open Network & Internet Settings"/>
 <br />
-For your first time, you might be met with somewhat of a terms of service (TOS) to agree that this tool will not be used for any malicious or unethical reasons. You’re not going to go out in the real-world and utilize this to attempt to steal someone’s credentials. This is all designed for demonstrative purposes only. Agree and hit <b>Enter</b> and you should be met with the following menu:
+Scroll down and choose <b>Change adapter options</b>
 <br />
-<img src="https://i.imgur.com/v6VNBVZ.png" height="55%" width="55%" alt="SET MENU Welcome-page"/>
-Now, we are going to be running a social engineering attack, so the first thing we are going to select is option <b>1</b> for <b>Social-Engineering Attacks</b>. Hit <b>Enter</b>. Now, we are met with another menu to choose a specific attack vector. Notice that option <b>2</b> says <b>Website Attack Vectors</b>. Remember, we will be generating a fake website. So, we'll choose option <b>2</b>. Hit <b>Enter</b>.
+<img src="https://i.imgur.com/Kxz9gZD.png" height="50%" width="50%" alt="Change adapter options"/>
 <br />
-<img src="https://i.imgur.com/gU2wQyz.png" height="55%" width="55%" alt="Website Attack Vectors"/>
+Right-click the adapter and choose <b>Properties</b>
 <br />
-Another menu pops up! Here are some attacks that SET has within a web browser. There is a Metasploit attack, a Tabnabbing one, and a Web Jacking one. We're going to choose option <b>3</b>, <b>Credential Harvester Attack Method</b>. Type <b>3</b> and then hit <b>Enter</b>.
+<img src="https://i.imgur.com/JfJF1qu.png" height="60%" width="60%" alt="Properties"/>
 <br />
-<img src="https://i.imgur.com/SMHprj8.png" height="55%" width="55%" alt="Credential Harvester"/>
-<br />
-We could clone websites. We can even create our own malicious website. For a quick demonstration, we'll choose option <b>1</b>, where there are templates already provided.
-<br />
-<img src="https://i.imgur.com/z6Rs54N.png" height="65%" width="65%" alt="Web Templates"/>
-<br />
-Here the tool will be asking for an IP address to send these captured credentials back to. Since we are keeping this local, we'll keep the IP address that is already provided (highlighted in white), sending it to the Kali Linux machine. We'll make sure to keep the IP address recorded for when we start setting up our phishing campaign.
-<br />
-<img src="https://i.imgur.com/JCpS1w2.png" height="60%" width="60%" alt="IP address for the POST"/>
-<br />
-Finally, we are going to create a fake Google login page. At the option menu, type in <b>2</b> and hit <b>Enter</b> to configure a fake Google login page.
-<br />
-<img src="https://i.imgur.com/u8G7NQA.png" height="60%" width="60%" alt="Select Google Template"/>
-<br />
-<br />
+
 <img src="https://i.imgur.com/kvcqxJU.png" height="80%" width="80%" alt="google website cloned"/>
 <br />
 <h3>Send Out Da Phishing Campaign</h3>
