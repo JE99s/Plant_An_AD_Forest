@@ -210,11 +210,41 @@ The server will automatically reboot afterwards. Be patient, it might take a whi
 <img src="https://i.imgur.com/iEU6kYR.png" height="60%" width="60%" alt="rebooting"/>
 <br />
 <h3>Configure Active Directory Certificate Services</h3>
-Once we click <b>Sign in</b>, we'll navigate back to our Kali machine, we should see what the SET credential harvester tool has captured in real-time, and it turns out that we have captured something!
+Active Directory Certificate Services will be installed to enable LDAPs. Log back into the domain controller as the local administrator and wait for the Server Manager application to load. Once it's open, go to <b>Manage > Add Roles and Features</b>.
 <br />
-<img src="https://i.imgur.com/3K3FwM6.png" height="85%" width="85%" alt="Captured Credentials"/>
+<img src="https://i.imgur.com/gr5XxN3.png" height="45%" width="45%" alt="Add Roles and Features"/>
 <br />
-Success! The feed shows the exact same credentials that we just put in as the victim on the Windows 10 VM. We have successfully captured a victim’s credentials through first creating a phishing email and then utilizing the Social Engineering Toolkit as the payload to capture the credentials that the victim would provide. One cool feature of the Credential Harvesting tool is that once a victims’ credentials are captured, the malicious site refreshes and is immediately replaced with the actual site it cloned. Hence, the victim would be directed to the actual Google website after submitting their credentials.
+Click <b>Next</b> > <b>Next</b> > <b>Next</b> > Choose <b>Active Directory Certificate Services</b>
 <br />
-<img src="https://i.imgur.com/8hG24Zb.png" height="80%" width="80%" alt="Back to regular Google"/>
+<figure>
+  <img src="https://i.imgur.com/IJ2NdWs.png" alt="DNS delegation" style="width:60%">
+  <figcaption>Click <b>Add Features</b></figcaption>
+</figure>
 <br />
+<br />
+<br />
+Click <b>Next</b> > <b>Next</b> > <b>Next</b> > <b>Next</b>. For AD CS, choose the <b>Certificate Authority</b> role service.
+<br />
+<img src="https://i.imgur.com/M8rXjmM.png" height="80%" width="80%" alt="Certification Authority"/>
+<br />
+<img src="https://i.imgur.com/fi3FPXs.png" height="80%" width="80%" alt="View Installation Progress"/>
+<br />
+Click on the alert icon and click on the text to <b>Configure Active Directory Certificate Services</b>
+<br />
+<img src="https://i.imgur.com/ImVmtem.png" height="60%" width="60%" alt="Alert"/>
+<br />
+Click <b>Next</b>, then select the service role to configure. Click <b>Next</b>.
+<br />
+<img src="https://i.imgur.com/ZvmYyH0.png" height="70%" width="70%" alt="Select Role services to configure"/>
+<br />
+Choose <b>Enterprise CA</b> and click <b>Next</b>.
+<br />
+<img src="https://i.imgur.com/kI4kSFc.png" height="70%" width="70%" alt="Enterprise CA"/>
+<br />
+We're just going to use the default settings. Click <b>Next</b> > <b>Next</b> > <b>Next</b> > <b>Next</b> > <b>Next</b> > <b>Next</b> > <b>Configure</b>
+
+<h3>Configure DNS Forwarders</h3>
+The DNS server running on the domain controller will act as a resolver for the ad.lab domain (or whichever local domain you chose). We need a forwarder for any DNS query for which the DNS server does not know the answer. We can use the pfSense default gateway as a downstream DNS server that the domain controller can pass queries to for any unknown hostnames.
+<br />
+
+Still on the DC1 VM, open up the Start Menu and search for <b>DNS</b>
