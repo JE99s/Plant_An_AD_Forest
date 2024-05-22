@@ -10,37 +10,36 @@
 - <b>VirtualBox Hypervisor </b>
 
 <h2>Lab Walk-through:</h2>
-<p>This demonstration will hit two birds with one stone. We’ll set up a phishing campaign with the <a href="https://docs.getgophish.com/user-guide/what-is-gophish" target="_blank">Gophish</a> framework where we’ll identify a victim user group, fabricate phishing emails, and launch a campaign that is configured all in one platform. Another element to this social engineering attack will be the credential harvesting tool that will clone a popular website and will act as the payload in our phishing campaign. </p>
+<p>In this demonstration, we'll cover some steps to set up a small Active Directory forest in VirtualBox, including a Domain Controller and two client computers.</p>
 <br />
-<h3>Initialize the Phishing Campaign</h3>
-It's best to do this lab in an isolated environment. I have my Windows 10 VM and Kali Linux VM powered on. Both machines are in the same subnet, which is essential for this demonstration to execute properly. Let’s pull up to the Windows 10 VM. Make sure your Windows Firewall is turned off so there’s no interference for the social engineering attack.
+<h3>Getting the Windows ISO Files</h3>
+To prepare this lab, we'll be getting the ISO files from the Microsoft Evaluation Center. Most of the ISOs you encounter here will have a lifespan of 90 -- 180 days of usage.
+
+<h4>Windows Server 2019</h4>
+We'll start with downloading a <a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019" target="_blank">Windows Server 2019</a> ISO file. Next, fill out your information (uncheck the box for additional communications) and select your language. Then, click <b>Download</b>.
 <br/>
-<img src="https://i.imgur.com/fQV0cA1.png" height="40%" width="40%" alt="Windows Firewall Turned Off"/>
+<img src="https://i.imgur.com/7Q18kJ0.png" height="50%" width="50%" alt="Windows Server 2019 ISO Download"/>
 <br />
-Next, we'll boot up our hMailServer that was created in another <a href="https://github.com/JE99s/Create_Your_Local_EmailServer" target="_blank">demonstration</a>.
-<br/>
-<img src="https://i.imgur.com/lE1mdzi.png" height="60%" width="60%" alt="Please enter hMailServer passwd"/>
-<br />
-Next, we’ll start up our Gophish Server.
-<br/>
-<img src="https://i.imgur.com/s44TwHe.png" height="40%" width="40%" alt="Mouse on gophish.exe"/>
-<br />
-The configured Gophish executable is locally assigned. The admin dashboard is where we will be doing our work. So, on any browser. We’ll type the following URL to navigate to the Gophish admin login page.
-<br/>
-<img src="https://i.imgur.com/OlpWN4G.png" height="60%" width="60%" alt="URL to Gophish admin server"/>
-<br />
-At the login page, we’ll submit our credentials to log in to the admin dashboard.
-<br/>
-<img src="https://i.imgur.com/ohFw8Hr.png" height="35%" width="35%" alt="Gophish Admin sign-in page"/>
+<h4>Windows 10 Enterprise</h4>
+Next, we'll download a <a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-10-enterprise" target="_blank">Windows 10 Enterprise</a> ISO file. Next, fill out your information (uncheck the box for additional communications) and select your language. Then, click <b>Download</b>. Now, we'll prepare the VMs.
+<img src="https://i.imgur.com/B1CGAMt.png" height="50%" width="50%" alt="Windows 10 Enterprise ISO Download"/>
 <br />
 
-<h3>Users & Groups</h3>
-On the left-side panel of the admin dashboard, we'll click the <b>Users & Groups</b> tab to establish our victim(s) for the phishing campaign. This is where we'll assign our targets for the phishing campaign to a group that could contain more than one email address, so a phishing campaign can be sent in mass. So, we'll click <b>New Group</b> to fill in the following fields:
+<h3>Windows Server 2019</h3>
+Let's first configure our Windows Server 2019 VM as our domain controller. On our VirtualBox VM Manager, create a new VM by clicking the <b>New VM</b> button. Configure the following:
 <br/>
-<img src="https://i.imgur.com/d2uXBjp.png" height="80%" width="80%" alt="New Group Fields"/>
+<img src="https://i.imgur.com/q62IZCb.png" height="80%" width="80%" alt="VM Name and OS"/>
 <br />
-We'll choose anything for the group name, and here we'll add some recipients. These valid email addresses created locally with help from our <a href="https://github.com/JE99s/Create_Your_Local_EmailServer" target="_blank">hMailServer</a>. Once all recipients are added, click <b>Save Changes</b>.
-
+<img src="https://i.imgur.com/30MXVBB.png" height="80%" width="80%" alt="Hardware"/>
+<br />
+<img src="https://i.imgur.com/hAIh2aX.png" height="80%" width="80%" alt="Virtual Hard disk"/>
+<br />
+Click <b>Finish</b>, but don't start the VM yet!
+<br />
+<img src="https://i.imgur.com/hAIh2aX.png" height="80%" width="80%" alt="Virtual Hard disk"/>
+<br />
+<img src="https://i.imgur.com/hAIh2aX.png" height="80%" width="80%" alt="Virtual Hard disk"/>
+<br />
 <br/>
 <img src="https://i.imgur.com/6iAX7e2.png" height="75%" width="75%" alt="Save Changes to Group"/>
 <br />
