@@ -669,3 +669,7 @@ Pull up PowerShell and look at the output from this <b><i>whoami</i></b> command
 <br />
 <img src="https://i.imgur.com/mRGIlli.png" height="65%" width="65%" alt="PS whoami"/>
 <br />
+
+
+<br />
+Nice! We now have a domain controller and two Windows 10 Enterprise clients joined to the domain controller.
