@@ -246,5 +246,52 @@ We're just going to use the default settings. Click <b>Next</b> > <b>Next</b> > 
 <h3>Configure DNS Forwarders</h3>
 The DNS server running on the domain controller will act as a resolver for the ad.lab domain (or whichever local domain you chose). We need a forwarder for any DNS query for which the DNS server does not know the answer. We can use the pfSense default gateway as a downstream DNS server that the domain controller can pass queries to for any unknown hostnames.
 <br />
-
+<br />
 Still on the DC1 VM, open up the Start Menu and search for <b>DNS</b>
+<br />
+<img src="https://i.imgur.com/650QBqg.png" height="25%" width="25%" alt="DNS"/>
+<br />
+Expand <b>DNS</b> > <b>DC1</b> and double-click <b>Forwarders</b>
+<br />
+<img src="https://i.imgur.com/u4Sn7DG.png" height="75%" width="75%" alt="Forwarders"/>
+<br />
+Click <b>Edit</b> and add the IP address of the default gateway (mine is the following). Click <b>OK</b>.
+<br />
+<img src="https://i.imgur.com/u4Sn7DG.png" height="55%" width="55%" alt="Forwarders"/>
+<br />
+<img src="https://i.imgur.com/wErn29S.png" height="75%" width="75%" alt="Edit Forwarders"/>
+<br />
+
+<h3>Add and Configure a DHCP Server</h3>
+Next, we'll open the Server Manager and go to <b>Manage</b> > <b>Add Roles and Features</b>
+<br />
+<img src="https://i.imgur.com/gr5XxN3.png" height="45%" width="45%" alt="Add Roles and Features"/>
+<br />
+Click <b>Next</b> > <b>Next</b> > <b>Next</b>
+<br />
+<br />
+Click <b>DHCP Server</b>
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/cvbRxBm.png" alt="DHCP Server" style="width:60%">
+  <figcaption>Click <b>Add Features</b> and click <b>Next</b> > <b>Next</b> <b>Next</b> > <b>Install</b></figcaption>
+</figure>
+<br />
+<br />
+<br />
+Once the installation is complete, click on <b>Complete DHCP Configuration</b>
+<br />
+<img src="https://i.imgur.com/xSB0jCs.png" height="75%" width="75%" alt="DHCP Feature Installation"/>
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/cvbRxBm.png" alt="DHCP Server" style="width:60%">
+  <figcaption>Click <b>Next</b> > <b>Commit</b> > <b>Close</b> > <b>Close</b></figcaption>
+</figure>
+<br />
+<br />
+<br />
+
+Go to the
