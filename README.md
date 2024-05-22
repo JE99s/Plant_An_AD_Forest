@@ -399,3 +399,273 @@ Click <b>Users</b> > <b>Domain Admins</b>
 <br />
 <br />
 
+<h3>Add Some Users to the Lab</h3>
+Log in as the new domain administrator
+<br />
+<img src="https://i.imgur.com/3eZotPY.png" height="75%" width="75%" alt="Log in as new admin"/>
+<br />
+<br />
+
+Once logged in, go to the <b>Start Menu</b>. Search for <b>Active Directory Users and Computers</b> and open the app.
+<br />
+<img src="https://i.imgur.com/OUEd1t4.png" height="45%" width="45%" alt="Active Directory Users and Computers"/>
+<br />
+
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/Kyb5lF6.png" alt="Right click for New User" style="width:50%">
+  <figcaption><b>ad.lab</b> > <b>Right-click Users</b> > <b>New</b> > <b>User</b></figcaption>
+</figure>
+<br />
+<br />
+<br />
+<h4>John Doe</h4>
+<br />
+<img src="https://i.imgur.com/wMuNVIm.png" height="65%" width="65%" alt="John Doe User Details"/>
+<br />
+<br />
+<img src="https://i.imgur.com/ZlxWYLa.png" height="65%" width="65%" alt="John Doe User Password & Passwd opts."/>
+<br />
+
+<h4>Jane Doe</h4>
+
+<br />
+<img src="https://i.imgur.com/83IwDko.png" height="65%" width="65%" alt="Jane Doe User Details"/>
+<br />
+<br />
+<img src="https://i.imgur.com/1Aau9W4.png" height="65%" width="65%" alt="Jane Doe User Password & Passwd opts."/>
+<br />
+
+<h3>Windows 10 Enterprise Template</h3>
+We'll navigate back to VirtualBox VM manager and power on the Windows 10 Enterprise Template VM.
+<br />
+<br />
+Choose your language and click <b>Next</b>
+<br />
+<img src="https://i.imgur.com/BCToWpd.png" height="65%" width="65%" alt="Choose Language"/>
+<br />
+
+Choose <b>Install Now</b> and accept the terms and conditions. Choose <b>Custom: Install Windows Only</b>.
+<br />
+<img src="https://i.imgur.com/XDHodFw.png" height="55%" width="55%" alt="Custom"/>
+<br />
+
+<br />
+Click <b>Next</b>. Wait for the installation to finish.
+<br />
+<img src="https://i.imgur.com/SbWlTdA.png" height="65%" width="65%" alt="Installing Windows"/>
+<br />
+
+<br />
+Select your regional and language settings. Choose <b>Domain join instead</b>
+<br />
+<img src="https://i.imgur.com/4mR3BKn.png" height="25%" width="25%" alt="Domain join instead"/>
+<br />
+
+<br />
+Enter the username Template, as this is going to be our template VM.
+<br />
+<img src="https://i.imgur.com/aJ3jTv9.png" height="75%" width="75%" alt="Template"/>
+<br />
+
+<br />
+Enter a password and set security questions. Save the information in your records.
+<br />
+<br />
+
+
+Turn off all the services here:
+<br />
+<img src="https://i.imgur.com/MRaWJqr.png" height="75%" width="75%" alt="Disabled services"/>
+<br />
+
+Choose <b>Not now</b> for Cortana.
+<br />
+
+<h3>Sysrep the Template</h3>
+***We want to run <b>sysrep</b> to create a template VM, so that when we clone the VM, the Windows systems will always have a unique SID when joining the domain.***
+
+<br />
+To get started, let's log into the system using the template credentials and open a PowerShell terminal as administrator.
+
+<br />
+Run the command
+<br />
+<img src="https://i.imgur.com/XeQEDdM.png" height="75%" width="75%" alt="PS command"/>
+<br />
+
+<br />
+Click <b>OK</b>. Let the sysprep process run to completion. The VM should shutdown.
+<br />
+
+<h3>Windows 10 Enterprise VM 1</h3>
+Right-click the <b>Windows 10 Enterprise Template</b> and choose <b>Clone</b>. Give the cloned VM a name such as <b><i>Win10Ent1</i></b>. Click <b>Clone</b> and move on to the next one.
+<br />
+<img src="https://i.imgur.com/9AvLfDB.png" height="75%" width="75%" alt="Win10Ent1"/>
+<br />
+
+<h3>Windows 10 Enterprise VM 2</h3>
+Same thing goes for another clone. Right-click the <b>Windows 10 Enterprise Template</b> and choose <b>Clone</b>. Give the cloned VM a name such as <b><i>Win10Ent2</i></b>. Click <b>Clone</b> and wait for the process to complete
+
+<br />
+<h3>Joining the Computers to the Domain</h3>
+I will only demonstrate this process on one of the VMs. Follow along and repeat this process on any other clients you would want to join to the domain.
+<h4>Windows 10 Enterprise VM 1</h4>
+**Because we selected the Out-of-Box-Experience (OOBE) when running sysprep on the template — which is the correct choice — we are required to run the through the Windows setup again as a newly issued computer.
+<br />
+
+This is essentially the same thing as receiving a newly imaged Windows computer from your employer and joining it to the local domain.**
+<br />
+
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/5D3ABko.png" alt="Domain join instead" style="width:70%">
+  <figcaption>Choose <b>Domain join instead</b></figcaption>
+</figure>
+<br />
+<br />
+<br />
+
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/JP8wuQc.png" alt="Domain join instead" style="width:70%">
+  <figcaption>Set up a password and security questions. Save them for later use.</figcaption>
+</figure>
+<br />
+<br />
+<br />
+
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/vhmMInF.png" alt="Disable services" style="width:70%">
+  <figcaption>Once again, disable these settings</figcaption>
+</figure>
+<br />
+<br />
+<br />
+
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/Uci7qzy.png" alt="Disable services" style="width:50%">
+  <figcaption>Choose <b>Not now</b> for Cortana</figcaption>
+</figure>
+<br />
+<br />
+
+
+<br />
+If you're prompted to allow your PC to be discoverable in the network, choose <b>Yes</b> for the sake of this lab. Once you're logged in, go to the <b>Start Menu</b> > <b>Search for This PC</b> > <b>Right-click</b> > <b>choose Properties</b>
+<br />
+<img src="https://i.imgur.com/5wslnT9.png" height="25%" width="25%" alt="This PC"/>
+<br />
+
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/9bawckY.png" alt="Advance sys settings" style="width:70%">
+  <figcaption>Go to <b>Advanced system settings</b></figcaption>
+</figure>
+<br />
+<br />
+
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/UaPfFnv.png" alt="Change" style="width:70%">
+  <figcaption>Click <b>Change</b></figcaption>
+</figure>
+<br />
+<br />
+
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/Fh2Ytdi.png" alt="More" style="width:70%">
+  <figcaption>Click <b>More</b></figcaption>
+</figure>
+<br />
+<br />
+
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/ajbAV6z.png" alt="DNS suffix" style="width:70%">
+  <figcaption>Enter your local <b>DNS suffix</b> for your AD domain</figcaption>
+</figure>
+<br />
+<br />
+
+<br/>
+Name your computer whatever you like and Enter your AD local domain
+<br />
+<img src="https://i.imgur.com/fN3lm2L.png" height="75%" width="75%" alt="Win10Ent1 and Domain ad.lab"/>
+<br />
+
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/Wnnm30v.png" alt="Enter credentials" style="width:65%">
+  <figcaption>Enter the domain controller credentials</figcaption>
+</figure>
+<br />
+<br />
+
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/n080Aqo.png" alt="Success" style="width:45%">
+  <figcaption>Success!</figcaption>
+</figure>
+<br />
+<br />
+
+<br />
+<img src="https://i.imgur.com/WZAVK9n.png" height="45%" width="45%" alt="Networks"/>
+<br />
+
+
+<br />
+<br />
+<br />
+<figure>
+  <img src="https://i.imgur.com/Xcj6axt.png" alt="Success" style="width:45%">
+  <figcaption>Choose <b>Other User</b> > Log in as a domain user</figcaption>
+</figure>
+<br />
+<br />
+
+
+<br />
+<img src="https://i.imgur.com/escNIPY.png" height="45%" width="45%" alt="Jane Doe logging in"/>
+<br />
+
+<br />
+Pull up PowerShell and look at the output from this <b><i>whoami</i></b> command
+<br />
+<img src="https://i.imgur.com/mRGIlli.png" height="65%" width="65%" alt="PS whoami"/>
+<br />
