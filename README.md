@@ -671,5 +671,11 @@ Pull up PowerShell and look at the output from this <b><i>whoami</i></b> command
 <br />
 
 
-<br />
 Nice! We now have a domain controller and two Windows 10 Enterprise clients joined to the domain controller.
+<br />
+
+
+
+<h2>References</h2>
+https://benheater.com/virtualbox-lab-active-directory-lab/
+<br />
